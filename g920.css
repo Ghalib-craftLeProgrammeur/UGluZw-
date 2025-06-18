@@ -1,0 +1,58 @@
+/* === STEERING (Axis 0) – radial wheel meter === */
+.axis[data-axis="0"] {
+  width: 200px;
+  height: 200px;
+  border: 8px solid #333;
+  border-radius: 50%;
+  position: relative;
+  margin: 20px auto;
+  background: #111;
+}
+
+.axis[data-axis="0"] .value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 90px;
+  background: #0ae;
+  transform-origin: bottom center;
+  transform: rotate(calc((var(--axis-value) * 1deg) + 0deg));
+  border-radius: 2px;
+}
+
+/* Add a center hub dot */
+.axis[data-axis="0"]::after {
+  content: "";
+  position: absolute;
+  width: 16px; height: 16px;
+  background: #ddd;
+  border-radius: 50%;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+}
+
+/* === PEDALS (Axis 1 & 2) – vertical bars === */
+.axis[data-axis="1"], .axis[data-axis="2"] {
+  width: 30px;
+  height: 150px;
+  background: #222;
+  border: 2px solid #444;
+  border-radius: 4px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.axis[data-axis="1"] .value, .axis[data-axis="2"] .value {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: calc(var(--axis-value) * 100%);
+  background: #e80; /* change color per pedal if desired */
+}
+
+/* Optional: LABELS below each axis */
+.axis[data-axis="0"] .name::after { content: "Steering"; }
+.axis[data-axis="1"] .name::after { content: "Throttle"; }
+.axis[data-axis="2"] .name::after { content: "Brake"; }
